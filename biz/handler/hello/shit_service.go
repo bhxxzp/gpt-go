@@ -4,6 +4,8 @@ package hello
 
 import (
 	"context"
+	"github.com/bytedance/gopkg/util/logger"
+	"gpt/biz/utils"
 
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/protocol/consts"
@@ -20,7 +22,7 @@ func Shit(ctx context.Context, c *app.RequestContext) {
 		c.String(consts.StatusBadRequest, err.Error())
 		return
 	}
-
+	logger.Info(utils.Marshal(req))
 	resp := new(hello.HelloResp)
 	if req.Name == "ysd" {
 		resp.RespBody = "love"
